@@ -3,6 +3,8 @@ A [MagicMirror²](https://github.com/MichMich/MagicMirror) module that shows the
 
 ![screenshot](https://user-images.githubusercontent.com/25268023/56037480-aaafba00-5d2f-11e9-9de5-576fcfc90877.png)
 
+The standings are fetched from the Swedish [Text TV API](https://texttv.nu/blogg/texttv-api) ([page 343](https://www.svt.se/svttext/web/pages/343.html)) as HTML and then scraped. So if the Text TV page change its appearance, the module will most likely break.
+
 # Installation
 1. Clone repo:
 ```
