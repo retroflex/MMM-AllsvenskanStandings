@@ -1,0 +1,14 @@
+{
+	"LOADING": "Loading...",
+	"POSITION": "",
+	"TEAM_NAME": "Club",
+	"MATCHES_PLAYED": "Pl",
+	"WINS": "W",
+	"DRAWS": "D",
+	"LOSSES": "L",
+	"GOALS_FOR": "F",
+	"GOALS_AGAINST": "A",
+	"GOAL_DIFFERENCE": "GD",
+	"GOALS_FOR_AND_AGAINST": "+/-",
+	"POINTS": "P"
+}

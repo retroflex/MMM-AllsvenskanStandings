@@ -1,0 +1,14 @@
+{
+	"LOADING": "Laddar...",
+	"POSITION": "",
+	"TEAM_NAME": "Klubb",
+	"MATCHES_PLAYED": "SM",
+	"WINS": "V",
+	"DRAWS": "O",
+	"LOSSES": "F",
+	"GOALS_FOR": "GM",
+	"GOALS_AGAINST": "IM",
+	"GOAL_DIFFERENCE": "MS",
+	"GOALS_FOR_AND_AGAINST": "+/-",
+	"POINTS": "P"
+}
