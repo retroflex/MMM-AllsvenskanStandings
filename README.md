@@ -19,13 +19,16 @@ A [MagicMirror²](https://github.com/MichMich/MagicMirror) module that shows the
 		{
 			module: 'MMM-AllsvenskanStandings',
 			header: 'Allsvenskan',
-			position: 'bottom_right'
+			position: 'bottom_right',
+			config: {
+				showPosition: false
+			}
 		},
 ```
 # Configuration
 | Option                   | Description
 | -------------------------| -----------
-| `showPosition`           | Whether to show column with position before the team name.<br />**Default value:** false
+| `showPosition`           | Whether to show column with position before the team name.<br />**Default value:** true
 | `showMatchesPlayed`      | Whether to show column with number of matches played.<br />**Default value:** true
 | `showWins`               | Whether to show column with number of matches won.<br />**Default value:** true
 | `showDraws`              | Whether to show column with number of matches drawn.<br />**Default value:** true
