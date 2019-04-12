@@ -1,0 +1,26 @@
+{
+	"name": "MMM-AllsvenskanStandings",
+	"version": "1.0.0",
+	"description": "A MagicMirror2 module that shows the current standings of Allsvenskan (the top Swedish football league).",
+	"keywords": [
+		"magic mirror",
+		"allsvenskan",
+		"football",
+		"soccer",
+		"sweden"
+	],
+	"homepage": "https://github.com/retroflex/MMM-AllsvenskanStandings#readme",
+	"bugs": {
+		"url": "https://github.com/retroflex/MMM-AllsvenskanStandings/issues"
+	},
+	"license": "MIT",
+	"author": "Johan Persson",
+	"main": "MMM-AllsvenskanStandings.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/retroflex/MMM-AllsvenskanStandings"
+	},
+	"dependencies": {
+		"request": "*"
+	}
+}
