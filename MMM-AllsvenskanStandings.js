@@ -94,6 +94,8 @@ Module.register('MMM-AllsvenskanStandings', {
 
 	// Override start to init stuff.
 	start: function() {
+		this.teams = [];
+
 		// Send anything to initiate communication / node helper.
 		this.sendSocketNotification('START', {message: 'start connection'});
 
