@@ -2,3 +2,15 @@
 	padding-left: 6px;
 	padding-right: 6px;
 }
+
+.MMM-AllsvenskanStandings .headerrow {
+	text-decoration: underline;
+}
+
+.MMM-AllsvenskanStandings .evenrow {
+	color: #fff;
+}
+
+.MMM-AllsvenskanStandings .oddrow {
+	color: #ccc;
+}

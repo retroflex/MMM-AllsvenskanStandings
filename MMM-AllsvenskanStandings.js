@@ -55,7 +55,7 @@ Module.register('MMM-AllsvenskanStandings', {
 		wrapper.className = 'bright xsmall';
 
 		var headerRow = document.createElement('tr');
-		headerRow.className = 'normal';
+		headerRow.className = 'normal headerrow';
 		this.createTableCell(headerRow, this.translate('POSITION'), this.config.showPosition);
 		this.createTableCell(headerRow, this.translate('TEAM_NAME'), true, true);  // team name
 		this.createTableCell(headerRow, this.translate('MATCHES_PLAYED'), this.config.showMatchesPlayed);
@@ -71,7 +71,10 @@ Module.register('MMM-AllsvenskanStandings', {
 
 		for (var i = 0; i < this.teams.length; ++i)
 		{
+			var evenRow = (i % 2 == 0);
+
 			var row = document.createElement('tr');
+			row.className = evenRow ? 'evenrow' : 'oddrow';
 
 			var team = this.teams[i];
 			this.createTableCell(row, team.position, this.config.showPosition);
