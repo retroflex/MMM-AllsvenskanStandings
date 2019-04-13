@@ -30,7 +30,7 @@ Module.register('MMM-AllsvenskanStandings', {
 			sv: "translations/sv.json"
 		}
 	},
-	
+
 	// Notification from node_helper.js.
 	// The standings are received here. Then module is redrawn.
 	// @param notification - Notification type.
@@ -45,7 +45,7 @@ Module.register('MMM-AllsvenskanStandings', {
 	// Override dom generator.
 	getDom: function () {
 		var wrapper = document.createElement('table');
-		
+
 		if (this.teams.length === 0) {
 			wrapper.innerHTML = this.translate('LOADING');
 			wrapper.className = 'dimmed xsmall';
@@ -96,9 +96,6 @@ Module.register('MMM-AllsvenskanStandings', {
 	start: function() {
 		this.teams = [];
 
-		// Send anything to initiate communication / node helper.
-		this.sendSocketNotification('START', {message: 'start connection'});
-
 		// Tell node_helper to load standings at startup.
 		this.sendSocketNotification('GET_STANDINGS', { });
 
@@ -108,7 +105,7 @@ Module.register('MMM-AllsvenskanStandings', {
 			self.sendSocketNotification('GET_STANDINGS', { });
 		}, 10 * 60 * 1000); // In millisecs. Refresh every 10 minutes.
 	},
-	
+
 	// Creates a table row cell.
 	// @param row - The table row to add cell to.
 	// @param string - The text to show.

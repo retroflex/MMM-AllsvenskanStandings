@@ -10,26 +10,46 @@ const request = require('request');
 
 module.exports = NodeHelper.create({
 	start: function() {
-		console.log('Starting node_helper for: ' + this.name);
+		//console.log('Starting node_helper for: ' + this.name);
 	},
 
 	// Scrapes HTML to find a row with team data.
-	// Row starts with [startSearchString] and ends with '</span>'.
+	// Row starts with '<span class="*">' and ends with '</span>' (where * can be G/W/C/Y.
 	// @param htmlObj - Contains the html to scrape. Wrapped in an object to enable pass by reference.
 	//                  When function returns, htmlObj.content will be changed to not be stripped of the scraped row.
-	// @param startSearchString - String that starts the row to search for.
 	// @return A string of team data separated with spaces.
-	scrapeTeamRow: function(htmlObj, startSearchString) {
-		var posStart = htmlObj.content.indexOf(startSearchString);
-		if (-1 === posStart)
+	scrapeTeamRow: function(htmlObj) {
+		var positions = [];
+		// Search for start strings.
+		positions.push(htmlObj.content.indexOf('<span class="G">'));
+		positions.push(htmlObj.content.indexOf('<span class="W">'));
+		positions.push(htmlObj.content.indexOf('<span class="C">'));
+		positions.push(htmlObj.content.indexOf('<span class="Y">'));
+
+		// Find first start string position.
+		var posStart = htmlObj.content.length;  // Max value.
+		var found = false;
+		for (var i = 0; i < positions.length; ++i)
+		{
+			if (positions[i] >= 0)
+			{
+				posStart = Math.min(posStart, positions[i]);
+				found = true;
+			}
+		}
+
+		if (false === found)
 			return null;
 
-		htmlObj.content = htmlObj.content.substring(posStart + startSearchString.length);
+		htmlObj.content = htmlObj.content.substring(posStart + '<span class="*">'.length);
 		var posEnd = htmlObj.content.indexOf('</span>');
 		if (-1 === posEnd)
 			return null;
 
 		var teamData = htmlObj.content.substring(0, posEnd);
+		if (0 === teamData.trim().length)  // Found a blank.
+			return null;
+
 		return teamData;
 	},
 
@@ -40,33 +60,18 @@ module.exports = NodeHelper.create({
 		var htmlObj = {content: html};  // Create object to pass by reference.
 		var teams = [];
 
-		// Scrape first row.
-		var team = this.scrapeTeamRow(htmlObj, '<span class="G">');
-		if (null != teams) teams.push(team);
-
-		// Scrape next 13 rows.
-		for (var i = 0; i < 13; ++i)
+		// There are 16 team rows, but the first one is blank. Search for 20 rows so we have some leeway.
+		for (var i = 0; i < 20; ++i)
 		{
-			team = this.scrapeTeamRow(htmlObj, '<span class="W">');
-			if (null == teams)
-				break;
-
-			teams.push(team);
+			team = this.scrapeTeamRow(htmlObj);
+			console.error("APA team row = " + team);
+			if (null != team)
+				teams.push(team);
 		}
 
-		// Scrape last 2 rows.
-		for (var i = 0; i < 2; ++i)
-		{
-			team = this.scrapeTeamRow(htmlObj, '<span class="C">');
-			if (null == teams)
-				break;
-
-			teams.push(team);
-		}
-		
 		return teams;
 	},
-	
+
 	// Corrects team name for some specific cases where names have been clipped.
 	// @param name - The (possibly clipped) team name.
 	// @return The corrected team name.
@@ -75,10 +80,10 @@ module.exports = NodeHelper.create({
 			name += 'g';
 		else if (name.endsWith('Eskilstun'))
 			name += 'a';
-		
+
 		return name;
 	},
-	
+
 	// Extracts the data from a team row string.
 	// @param teamRow - A string of team data separated with spaces.
 	//                  Example of a team row string: ' 6 AFC Eskilstun  2  1  0  1   5-4    3'
@@ -101,7 +106,7 @@ module.exports = NodeHelper.create({
 			if (goalDifference > 0)
 				goalDifference = '+' + goalDifference;
 		}
-		
+
 		name = this.fixTeamName(name);
 
 		var teamData = {position: position,
@@ -116,24 +121,23 @@ module.exports = NodeHelper.create({
                     points: points};
 		return teamData;
 	},
-	
+
 	// Scrapes HTML into team data for all teams in the Allsvenskan table.
 	// @param html - The HTML to scrape.
 	// @return An array of team data.
 	scrape: function(html) {
 		var teamRows = this.scrapeTeamRows(html);
-		
+
 		var teams = [];
-		
 		for (var i = 0; i < teamRows.length; ++i)
 		{
 			var teamData = this.extractTeamData(teamRows[i]);
 			teams.push(teamData);
 		}
-		
+
 		return teams;
 	},
-	
+
 	// Gets Allsvenskan table from Swedish TextTV API and scrapes it into an array of team data.
 	// The array is then sent to the client (to MMM-AllsvenskanStandings.js).
 	getStandings: function() {
