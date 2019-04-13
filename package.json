@@ -21,6 +21,6 @@
 		"url": "https://github.com/retroflex/MMM-AllsvenskanStandings"
 	},
 	"dependencies": {
-		"request": "*"
+		"request": "^2.88.0"
 	}
 }
