@@ -42,5 +42,6 @@ The standings are fetched from the Swedish [Text TV API](https://texttv.nu/blogg
 | `showPoints`             | Whether to show column with points.<br />**Default value:** true
 
 # Todo
-* Allow for columns to be reorganized via config.
 * Alternative row coloring to be able to read rows easier.
+* Customizable row heading texts in config.
+* Allow for columns to be reorganized via config.
