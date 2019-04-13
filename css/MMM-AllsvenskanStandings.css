@@ -4,7 +4,7 @@
 }
 
 .MMM-AllsvenskanStandings .headerrow {
-	text-decoration: underline;
+	font-weight: bold;
 }
 
 .MMM-AllsvenskanStandings .evenrow {
