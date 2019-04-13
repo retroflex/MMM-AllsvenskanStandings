@@ -41,6 +41,12 @@ The standings are fetched from the Swedish [Text TV API](https://texttv.nu/blogg
 | `showGoalsForAndAgainst` | Whether to show column with number of goals made and let in. See the +/- column in the above screenshot.<br />**Default value:** true
 | `showPoints`             | Whether to show column with points.<br />**Default value:** true
 
+# Customize Looks
+These items have own class names and can be customized via CSS (see css/AllsvenskanStandings.css for example).
+* Header table row
+* Even table rows
+* Odd table rows
+
 # Todo
 * Customizable row heading texts in config.
 * Allow for columns to be reorganized via config.
