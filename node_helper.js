@@ -64,7 +64,6 @@ module.exports = NodeHelper.create({
 		for (var i = 0; i < 20; ++i)
 		{
 			team = this.scrapeTeamRow(htmlObj);
-			console.error("APA team row = " + team);
 			if (null != team)
 				teams.push(team);
 		}
