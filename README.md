@@ -5,6 +5,8 @@ A [MagicMirror²](https://github.com/MichMich/MagicMirror) module that shows the
 
 The standings are fetched from the Swedish [Text TV API](https://texttv.nu/blogg/texttv-api) ([page 343](https://www.svt.se/svttext/web/pages/343.html)) as HTML and then scraped. So if the Text TV page change its appearance, the module will most likely break.
 
+The standings are refreshed every 10 minutes (currently hard coded).
+
 # Installation
 1. Clone repo:
 ```
@@ -46,7 +48,3 @@ These items have own class names and can be customized via CSS (see css/Allsvens
 * Header table row
 * Even table rows
 * Odd table rows
-
-# Todo
-* Customizable row heading texts in config.
-* Allow for columns to be reorganized via config.
