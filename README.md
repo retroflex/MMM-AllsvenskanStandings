@@ -44,7 +44,7 @@ The standings are refreshed every 10 minutes (currently hard coded).
 | `showPoints`             | Whether to show column with points.<br />**Default value:** true
 
 # Customize Looks
-These items have own class names and can be customized via CSS (see css/AllsvenskanStandings.css for example).
+These items have own class names and can be customized via CSS (see [css/AllsvenskanStandings.css](https://github.com/retroflex/MMM-AllsvenskanStandings/blob/master/css/MMM-AllsvenskanStandings.css) for example).
 * Header table row
 * Even table rows
 * Odd table rows
