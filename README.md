@@ -13,12 +13,7 @@ The standings are refreshed every 10 minutes (currently hard coded).
 	cd MagicMirror/modules/
 	git clone https://github.com/retroflex/MMM-AllsvenskanStandings
 ```
-2. Install dependencies:
-```
-	cd MMM-AllsvenskanStandings/
-	npm install
-```
-3. Add the module to the ../MagicMirror/config/config.js, example:
+2. Add the module to the ../MagicMirror/config/config.js, example:
 ```
 		{
 			module: 'MMM-AllsvenskanStandings',
