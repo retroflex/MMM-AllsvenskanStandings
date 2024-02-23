@@ -1,5 +1,5 @@
 {
-	"name": "MMM-AllsvenskanStandings",
+	"name": "mmm-allsvenskanstandings",
 	"version": "1.0.0",
 	"description": "A MagicMirror² module that shows the current standings of Allsvenskan (the top Swedish football league).",
 	"keywords": [
