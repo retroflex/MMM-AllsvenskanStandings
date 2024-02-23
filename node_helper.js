@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-AllsvenskanStandings
  *
  * By Johan Persson, https://github.com/retroflex
@@ -6,7 +6,6 @@
  */
 
 const NodeHelper = require('node_helper');
-const request = require('request');
 
 module.exports = NodeHelper.create({
 	start: function() {
@@ -70,16 +69,21 @@ module.exports = NodeHelper.create({
 	// Gets Allsvenskan table from Swedish TextTV API and scrapes it into an array of team data.
 	// The array is then sent to the client (to MMM-AllsvenskanStandings.js).
 	getStandings: function() {
-		request({
-			url: 'https://texttv.nu/api/get/343?includePlainTextContent=1',
-			method: 'GET'
-		}, (error, response, body) => {
-			if (!error && response.statusCode == 200) {
-				var html = JSON.parse(body)[0].content_plain[0];
+		fetch('https://texttv.nu/api/get/343?includePlainTextContent=1')
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.json();
+			})
+			.then(data => {
+				var html = data[0].content_plain[0];
 				var teams = this.scrape(html);
 				this.sendSocketNotification('STANDINGS_RESULT', teams);
-			}
-		});
+			})
+			.catch(error => {
+				console.error(`There has been a problem with your fetch operation: ${error.message}`);
+			});
 	},
 
 	// Listens to notifications from client (from MMM-AllsvenskanStandings.js).
